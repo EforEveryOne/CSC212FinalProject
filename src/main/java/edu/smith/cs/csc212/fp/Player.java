@@ -24,6 +24,7 @@ public class Player {
 	int currency;
 	
 	
+	
 	public Player(String name,
 			int hp,
 			int max_hp,
