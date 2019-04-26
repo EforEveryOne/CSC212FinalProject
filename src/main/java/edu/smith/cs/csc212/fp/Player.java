@@ -4,6 +4,7 @@ public class Player {
 	
 //	personal stuff
 	String name;
+	int age;
 	
 	int hp;
 	int max_hp;
@@ -22,25 +23,25 @@ public class Player {
 	int next_level_exp;
 	
 	int currency;
+
 	
 	
 	
 	public Player(String name,
 			int hp,
+			int age,
 			int max_hp,
 			int stat_points,
 			int endurance,
-			int strength,
-			int armor,
-			int damage, 
+			int strength, 
 			int defense_value, 
 			int damage_value,
 			int level,
 			int current_exp,
 			int next_level_exp,
 			int currency) {
-		
 		this.name = name;
+		this.age = age;
 		this.hp = hp;
 		this.max_hp = max_hp;
 		this.stat_points = stat_points;
@@ -55,7 +56,13 @@ public class Player {
 		}
 	
 //	don't think this is needed... can just call level_up even for initial creation?
-	public void calculate_stats() {
+	public static void calculate_stats(String name, int endurance, int strength) {
+		
+		
+		
+		
+		
+//		Player player = new Player("TestName", 0, 10, 10, 5, 5, 0, 1, 1, 1, 100, 10, 0);
 		
 	}
 	
@@ -68,11 +75,19 @@ public class Player {
 			}
 		}
 	
+	public void spend_points(Player player) {
+		if (player.stat_points > 0) {
+			
+			
+		}
+	}
+	
 	
 	public String print_details() {
-		return ("Player Info: \nName: " + name + "."
+		return ("\nPlayer Info: \nName: " + name + "."
+				+ "\nAge: " + age + "."
 				+ "\nHitpoints: " + hp + "/" + max_hp + "."
-				+ "\nUnspent points:" + stat_points + "."
+				+ "\nUnspent points: " + stat_points + "."
 				+ "\nEndurance: " + endurance + "."
 				+ "\nStength: " + strength + "."
 				+ "\nArmor: " + defense_value + "."
