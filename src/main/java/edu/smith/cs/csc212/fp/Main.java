@@ -78,7 +78,13 @@ public class Main {
 					  System.out.println("\nYour age is: " + player.age + ". ");
 					  }
 				  }
+//			  Set base stats and free points.
+			  player.endurance += 5;
+			  player.strength += 5;
+			  player.stat_points += 5;
 //			  spend skill points now.
+			  player.spend_points(player);
+			  
 			  }
 //		  Default character.
 		  else if (input.equals("no")) {

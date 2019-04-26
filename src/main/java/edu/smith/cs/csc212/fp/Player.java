@@ -66,22 +66,27 @@ public class Player {
 		
 	}
 	
-//	use recursion to handle leveling up if you have enough exp for multiple levels.
-	public void level_up_check() {
-		if (current_exp >= next_level_exp) {
-//		calculate everything.
-
-			level_up_check();
-			}
-		}
-	
+//	These points can be spent to increase strength or endurance.
 	public void spend_points(Player player) {
+		System.out.println("urrently have: " + player.endurance + " ");
+		
 		if (player.stat_points > 0) {
 			
 			
 		}
 	}
 	
+	public void level_up_check(Player player) {
+		if (player.current_exp >= player.next_level_exp) {
+			int crossover_xp = 0;
+			
+			player.current_exp += player.next_level_exp;
+			
+			
+		}
+// recur at end to handle multiple level ups, though I don't think there will be any way to gain an abundance of xp.
+		level_up_check(player);
+	}
 	
 	public String print_details() {
 		return ("\nPlayer Info: \nName: " + name + "."
