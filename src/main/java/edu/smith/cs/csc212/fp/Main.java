@@ -59,32 +59,42 @@ public class Main {
 			  int age = 0;
 			  System.out.println("\nWhat's your age? ");
 //			  While age is not between 10 and 90.
+			  
+//			  Scanner scan = new Scanner(System.in);
+
 			  while (age < 10 || age > 90) {
-				  try {
+//				  When we don't have an int, we're going to stay here until we do.
+				  while(!scanner.hasNextInt()) {
+				      scanner.next();
+				      System.out.println("Please type a valid number. ");
+				      }
+//				  Soon as we leave the loop with an int, we put it into the age variable.
 				  age = scanner.nextInt();
-				  }
-				  catch (Exception err) {
-					  System.out.println("Please type a valid number. ");
-					  continue;
-					  }
+//				  now we examine the number a little.
 				  if (age < 10) {
 					  System.out.println("You're too young! ");
+					  continue;
 					  }
-				  if (age > 90) {
+				  else if (age > 90) {
 					  System.out.println("You're too old! ");
+					  continue;
 					  }
-				  if (age > 10 && age < 90) {
+//				  We accept the number!
+				  else if (age >= 10 && age <= 90) {
 					  player.age = age;
 					  System.out.println("\nYour age is: " + player.age + ". ");
+					  
+		//			  Set base stats and free points.
+					  player.endurance += 5;
+					  player.strength += 5;
+					  player.stat_points += 5;
+					  player.next_level_exp = 100;
+		//			  spend skill points now.
+					  player.spend_points(player);
+		//			  calc stat output based on inputs.
+					  player.calculate_stats(player);
 					  }
 				  }
-//			  Set base stats and free points.
-			  player.endurance += 5;
-			  player.strength += 5;
-			  player.stat_points += 5;
-//			  spend skill points now.
-			  player.spend_points(player);
-			  
 			  }
 //		  Default character.
 		  else if (input.equals("no")) {
@@ -105,11 +115,6 @@ public class Main {
 
 			  System.out.println(player.print_details());
 			  break;
-			  
-			  
-			  
-// 			  feed in auto variables for quick gen
-//			  Player.calculate_stats(input, 0, 0);
 			  }
 //		  Invalid input.
 		  else {

@@ -55,38 +55,52 @@ public class Player {
 		this.currency = currency;
 		}
 	
-//	don't think this is needed... can just call level_up even for initial creation?
-	public static void calculate_stats(String name, int endurance, int strength) {
-		
-		
-		
-		
-		
-//		Player player = new Player("TestName", 0, 10, 10, 5, 5, 0, 1, 1, 1, 100, 10, 0);
-		
-	}
 	
 //	These points can be spent to increase strength or endurance.
 	public void spend_points(Player player) {
-		System.out.println("urrently have: " + player.endurance + " ");
+
+		System.out.println("______________________");
+		System.out.println("|SPENDING STAT POINTS|");
+		System.out.println("Endurance: " + player.endurance + ". ");
+		System.out.println("Strength: " + player.strength + ". ");
 		
 		if (player.stat_points > 0) {
+			System.out.println("Unspent points: " + player.stat_points + ". ");
 			
+//		would be cool to add speed which increases chances of getting a second action in a row sort of thing.	
 			
 		}
 	}
 	
+//	don't think this is needed... can just call level_up even for initial creation?
+	public void calculate_stats(Player player) {	
+		player.max_hp = player.endurance * 2 + player.level;
+//		heal them up to new full hp.
+		player.hp = player.max_hp;
+		
+//		plus w/e weapon the use?
+		player.damage_value = player.strength / 2 + player.level;
+		}
+	
 	public void level_up_check(Player player) {
 		if (player.current_exp >= player.next_level_exp) {
-			int crossover_xp = 0;
 			
-			player.current_exp += player.next_level_exp;
+//			Crossover xp is the remainder of what is left after using enough to level up once.
+			int crossover_xp = player.current_exp - player.next_level_exp;
+//			Level increase.
+			player.level += 1;
+//			Stat points to be spent
+			player.stat_points += 2;
 			
+			calculate_stats(player);
 			
+//			player.current_exp += player.next_level_exp;
+			player.next_level_exp += (int) Math.pow(player.current_exp, 1.1);
+			player.current_exp += crossover_xp;
+//			Final step to handle crossover xp.
+			level_up_check(player);
+			}
 		}
-// recur at end to handle multiple level ups, though I don't think there will be any way to gain an abundance of xp.
-		level_up_check(player);
-	}
 	
 	public String print_details() {
 		return ("\nPlayer Info: \nName: " + name + "."
