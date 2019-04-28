@@ -1,5 +1,6 @@
 package edu.smith.cs.csc212.fp;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Player {
@@ -20,6 +21,8 @@ public class Player {
 	int current_exp;
 	int next_level_exp;
 	int currency;
+	boolean priority;
+	static ArrayList<Item> inventory;
 
 	
 	public Player(String name,
@@ -34,7 +37,9 @@ public class Player {
 			int level,
 			int current_exp,
 			int next_level_exp,
-			int currency) {
+			int currency,
+			boolean priority,
+			ArrayList<Item> inventory) {
 		this.name = name;
 		this.age = age;
 		this.hp = hp;
@@ -48,6 +53,8 @@ public class Player {
 		this.current_exp = current_exp;
 		this.next_level_exp = next_level_exp;
 		this.currency = currency;
+		this.priority = priority;
+		this.inventory = inventory;
 		}
 	
 	
@@ -135,9 +142,6 @@ public class Player {
 			}
 		}
 	
-	
-	
-	
 //	don't think this is needed... can just call level_up even for initial creation?
 	public void calculate_stats(Player player) {	
 		player.max_hp = player.endurance * 2 + player.level;
@@ -200,7 +204,7 @@ public class Player {
 //			  Custom character.
 			  if (input.equals("yes")) {
 //				  Build blank character, modify by user input.
-				  Player player = new Player("TestName", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+				  Player player = new Player("TestName", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, inventory);
 				  System.out.println("What's your name? ");
 				  String name = "";
 				  name = scanner.next();
@@ -257,12 +261,13 @@ public class Player {
 						  5, // skill points
 						  5, // endurance
 						  5, //strength
-						  1, // armor value
+						  0, // armor value
 						  1, // damage value, base 1.
 						  1, // level, base 1. 
 						  0, // xp
 						  100, // next lvl xp
-						  0); // money
+						  0, // money
+						  false, inventory); // priority for turn
 
 				  System.out.println(player.print_details());
 				  break;

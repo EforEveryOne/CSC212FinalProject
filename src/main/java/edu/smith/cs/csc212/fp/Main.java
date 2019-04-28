@@ -33,29 +33,6 @@ public class Main {
 			  }
 		  }
 	  }
-  
-
-  
-//  takes in arg for each variable needed to build player?
-public static void calculate_character() {
-//	int max_hp,
-//	int stat_points,
-//	int endurance,
-//	int strength,
-//	int armor,
-//	int damage, 
-//	int defense_value, 
-//	int damage_value,
-//	int level,
-//	int current_exp,
-//	int next_level_exp,
-//	int currency
-	
-//	hp = endurance + level * 2
-//	dmg = strength + level * 2
-//	armor = 0
-//	dmg base 1	
-}
 
 //does method take in arguments?
 //should know current zone so that it knows where player is.
