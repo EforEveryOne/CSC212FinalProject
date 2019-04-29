@@ -25,6 +25,7 @@ public class Place {
 	/**
 	 * Whether reaching this place ends the game.
 	 */
+	private String options;
 	private boolean terminal;
 	
 	/**
@@ -32,12 +33,15 @@ public class Place {
 	 * @param id - the internal id of this place.
 	 * @param description - the user-facing description of the place.
 	 * @param terminal - whether this place ends the game.
+	 * @param options 
 	 */
-	private Place(String id, String description, boolean terminal) {
+	private Place(String id, String description, String options) {
 		this.id = id;
 		this.description = description;
 		this.exits = new ArrayList<>();
-		this.terminal = terminal;
+//		this.terminal = terminal;
+//		Adding in input options for places.
+		this.options = options;
 	}
 
 	/**
@@ -97,18 +101,18 @@ public class Place {
 	 * @param description - this is the description of the place.
 	 * @return the Place object.
 	 */
-	public static Place terminal(String id, String description) {
-		return new Place(id, description, true);
-	}
-	
+//	public static Place terminal(String id, String description, String options) {
+//		return new Place(id, description, options);
+//	}
+//	
 	/**
 	 * Create a place with an id and description.
 	 * @param id - this is the id of the place (for creating {@link Exit} objects that go here).
 	 * @param description - this is what we show to the user.
 	 * @return the new Place object (add exits to it).
 	 */
-	public static Place create(String id, String description) {
-		return new Place(id, description, false);
+	public static Place create(String id, String description, String options) {
+		return new Place(id, description, options);
 	}
 	
 	/**
@@ -134,4 +138,15 @@ public class Place {
 		}
 		return false;
 	}
+
+	
+	public String options() {
+		return this.options;
+	}
+//	public char[] options() {
+		
+		
+		// TODO Auto-generated method stub
+//		return null;
+//	}
 }

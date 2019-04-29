@@ -28,21 +28,25 @@ private Map<String, Place> places = new HashMap<>();
 		
 		
 		
-		
+//		1st string = id, 2nd = description, 3rd = options
 		Place town = insert(
-				Place.create("town", "You're in a town. People seem busy.\n "
-						+ "A nearby Shop and Tavern stand out to you. "));
+				Place.create("town", "You're in a town. People seem busy.\n A nearby Shop and Tavern stand out to you. ",
+						"Options: "));
 		town.addExit(new Exit("shop", "Go to Shop. "));
 		town.addExit(new Exit("tavern", "Go to Tavern. "));
 //		town.addExit(new Exit("Leave", "An old dusty road heading out of town... "));
 		
 		Place tavern = insert(
-				Place.create("tavern", "This is the tavern. "));
+				Place.create("tavern", "This is the tavern. ", "Options: "));
 		tavern.addExit(new Exit("town", "Back to town. "));
 		
 		Place shop = insert(
-				Place.create("shop", "This is the shop. "));
+				Place.create("shop", "This is the shop. ", "Options: "));
 		shop.addExit(new Exit("town", "Back to Town. "));
+		
+		Place wilderness = insert(
+				Place.create("wilderness", "This is outside of town, it's dangerous...", "Options: "));
+		wilderness.addExit(new Exit("town", "Back to Town. "));
 		
 		
 		

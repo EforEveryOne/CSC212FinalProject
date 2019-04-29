@@ -33,7 +33,7 @@ static Player player = new Player(
 1, // level, base 1. 
 0, // xp
 100, // next lvl xp
-0, // money
+100, // currency
 false, inventory); // priority for turn
   
   public static void play_game(Player player) {
@@ -112,15 +112,11 @@ public static void main(String[] args) {
 			  System.out.println(" ["+i+"] " + e.getDescription());
 			  }
 			
-			
-
-			
-			
 //			Need to handle correct type input, we want a number, anything else crashes it, so handle it.
 //			TOWN ZONE/INPUT
 //			should be while instead of if?
 			if (here.getId() == "town") {
-//				System.out.println("town time! ");
+				System.out.println(here.options());
 				String input = "";
 				Scanner scanner = new Scanner(System.in);
 				input = scanner.next();
@@ -136,13 +132,15 @@ public static void main(String[] args) {
 					Exit destination = exits.get(intValue);
 					place = destination.getTarget();
 				} catch (Exception e) {
-					System.out.println("\n\nPlease type a valid option [0], [1], [search]\n ");
+//					System.out.println("\n\nPlease type a valid option [0], [1], [search]\n ");
+					System.out.println("Please type a valid input.\n ");
 					continue;
 					}
 				}
 			
 //			TAVERN ZONE/INPUT
 			else if (here.getId() == "tavern") {
+				System.out.println(here.options());
 				String input = "";
 				Scanner scanner = new Scanner(System.in);
 				input = scanner.next();
@@ -151,8 +149,7 @@ public static void main(String[] args) {
 					}
 				else if (input.equals("sleep")) {
 					Player.sleep_at_tavern(player);
-					
-				}
+					}
 				try {
 					int intValue = Integer.parseInt(input);
 					
@@ -162,41 +159,44 @@ public static void main(String[] args) {
 				} catch (Exception e) {
 //					TO DO
 //					SLEEP spend night at the tavern, heal up character. costs gold.
-					System.out.println("\n\nPlease type a valid option [0], [search], [sleep]\n ");
+//					System.out.println("\n\nPlease type a valid option: [0], [search], [sleep]\n ");
+					System.out.println("Please type a valid input.\n ");
 					continue;
 					}
 				}
 			
 //			SHOP ZONE/INPUT
 			else if (here.getId() == "shop") {
+				System.out.println(here.options());
+				String input = "";
+				Scanner scanner = new Scanner(System.in);
+				input = scanner.next();
 				try {				
-					String input = "";
-					Scanner scanner = new Scanner(System.in);
-					input = scanner.next();
 					int intValue = Integer.parseInt(input);
 					
 					// Move to the room they indicated.
 					Exit destination = exits.get(intValue);
 					place = destination.getTarget();
 				} catch (Exception e) {
-					System.out.println("Please type a valid number.\n ");
+					System.out.println("Please type a valid input.\n ");
 					continue;
 					}
 				}
 			
 //			WILDERNESS ZONE/INPUT
 			else if (here.getId() == "wilderness") {
+				String input = "";
+				Scanner scanner = new Scanner(System.in);
+				input = scanner.next();
+				System.out.println(here.options());
 				try {				
-					String input = "";
-					Scanner scanner = new Scanner(System.in);
-					input = scanner.next();
 					int intValue = Integer.parseInt(input);
 					
 					// Move to the room they indicated.
 					Exit destination = exits.get(intValue);
 					place = destination.getTarget();
 				} catch (Exception e) {
-					System.out.println("Please type a valid number.\n ");
+					System.out.println("Please type a valid input.\n ");
 					continue;
 					}
 				}

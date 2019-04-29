@@ -55,7 +55,7 @@ public class Player {
 		this.next_level_exp = next_level_exp;
 		this.currency = currency;
 		this.priority = priority;
-		this.inventory = inventory;
+		Player.inventory = inventory;
 		}
 	
 	
@@ -254,6 +254,7 @@ public class Player {
 				  }
 //			  Default character.
 			  else if (input.equals("no")) {
+				  System.out.println("Using the default player object made in Main.\n ");
 //				  Player player = new Player(
 //						  "DefaultDan", // name
 //						  10, // age
@@ -280,7 +281,7 @@ public class Player {
 			  }
 		  }
 
-
+// HP recovery mechanic.
 	public static void sleep_at_tavern(Player player) {
 		Random rand = new Random();
 		
@@ -306,10 +307,12 @@ public class Player {
 					int heal_amount = rand.nextInt((short_stay_cost + 5) / 2);
 					System.out.println("You healed: " + heal_amount + " HP after resting.");
 					player.hp += heal_amount;
+					player.currency -= short_stay_cost;
 					if (player.hp > player.max_hp) {
 						player.hp = player.max_hp;
 						}
 					System.out.println("Current HP: " + player.hp + "/" + player.max_hp + ".\n ");
+					break;
 					}
 			}
 			else if (input.equals("long")) {
@@ -322,10 +325,12 @@ public class Player {
 				else if (player.currency >= long_stay_cost) {
 					int heal_amount = player.max_hp - player.hp;
 					player.hp += heal_amount;
+					player.currency -= long_stay_cost;
 					System.out.println("You healed: " + heal_amount + " HP after resting.");
 					System.out.println("Current HP: " + player.hp + "/" + player.max_hp + ".\n ");
+					break;
 					}
-			}
+				}
 			else if (input.equals("back")) {
 				System.out.println("You walk away from the barkeep. ");
 				break;
