@@ -286,14 +286,52 @@ public class Player {
 		
 		int short_stay_cost = player.level * 2 + 1;
 		int long_stay_cost = player.level * 3 + 2;
-		System.out.println("'Welcome to the tavern!' It costs: " + short_stay_cost + " for a [short] stay and: " + long_stay_cost + " for a [long] stay.\n ");
+		System.out.println("'Welcome to the tavern!' It costs: " + short_stay_cost + " for a short stay and: " + long_stay_cost + " for a long stay.\n ");
+		System.out.println("You currently have: " + player.currency + " gold.\n ");
+		System.out.println("Options: [short], [long], [back] ");
+		String input = "";
+		Scanner scanner = new Scanner(System.in);
+		input = scanner.next();
 		
-
-		
-		
-//		if (player.currency)
-	
-	}
+		while (!input.equals("short") || !input.equals("long") || !input.equals("back")) {
+			
+			if (input.equals("short")) {
+				if (player.currency < short_stay_cost) {
+					System.out.println("You don't have enough gold! ");
+					System.out.println("You need: " + short_stay_cost + "gold. ");
+					System.out.println("You only have: " + player.currency + "gold. ");
+					}
+//				LOW HEAL
+				else if (player.currency >= short_stay_cost) {
+					int heal_amount = rand.nextInt((short_stay_cost + 5) / 2);
+					System.out.println("You healed: " + heal_amount + " HP after resting.");
+					player.hp += heal_amount;
+					if (player.hp > player.max_hp) {
+						player.hp = player.max_hp;
+						}
+					System.out.println("Current HP: " + player.hp + "/" + player.max_hp + ".\n ");
+					}
+			}
+			else if (input.equals("long")) {
+				if (player.currency < long_stay_cost) {
+					System.out.println("You don't have enough gold! ");
+					System.out.println("You need: " + long_stay_cost + "gold. ");
+					System.out.println("You only have: " + player.currency + "gold. ");
+					}
+//				FULL HEAL
+				else if (player.currency >= long_stay_cost) {
+					int heal_amount = player.max_hp - player.hp;
+					player.hp += heal_amount;
+					System.out.println("You healed: " + heal_amount + " HP after resting.");
+					System.out.println("Current HP: " + player.hp + "/" + player.max_hp + ".\n ");
+					}
+			}
+			else if (input.equals("back")) {
+				System.out.println("You walk away from the barkeep. ");
+				break;
+				}
+			}
+		}
 	
 //	handle gold/items in player class or separate class?
 //	think it makes sense to do in here because I could do the same thing for enemies.
