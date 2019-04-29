@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.smith.cs.csc212.fp.Exit;
+//import edu.smith.cs.csc212.p4.Place;
+//import edu.smith.cs.csc212.p4.SecretExit;
 
 //JJ code
 public class Place {
@@ -37,4 +39,99 @@ public class Place {
 		this.exits = new ArrayList<>();
 		this.terminal = terminal;
 	}
+
+	/**
+	 * Create an exit for the user to navigate to another Place.
+	 * @param exit - the description and target of the other Place.
+	 */
+	public void addExit(Exit exit) {
+		this.exits.add(exit);
 	}
+	
+	/**
+	 * For gameplay, whether this place ends the game.
+	 * @return true if this is the end.
+	 */
+	public boolean isTerminalState() {
+		return this.terminal;
+	}
+	
+	/**
+	 * The internal id of this place, for referring to it in {@link Exit} objects.
+	 * @return the id.
+	 */
+	public String getId() {
+		return this.id;
+	}
+	
+	
+	
+	/**
+	 * The narrative description of this place.
+	 * @return what we show to a player about this place.
+	 */
+	public String getDescription() {
+		return this.description;
+	}
+
+
+	/**
+	 * Get a view of the exits from this Place, for navigation.
+	 * @return all the exits from this place.
+	 */
+	public List<Exit> getVisibleExits() {
+		  List<Exit> output = new ArrayList<>();
+		  for (Exit e : this.exits) {
+		    if (e.isSecret()) {
+		     // don't show to player
+		    } else {
+		      output.add(e);
+		      }
+		    }
+		  return output;
+		  }
+	
+	/**
+	 * This is a terminal location (good or bad) ends the game.
+	 * @param id - this is the id of the place (for creating {@link Exit} objects that go here).
+	 * @param description - this is the description of the place.
+	 * @return the Place object.
+	 */
+	public static Place terminal(String id, String description) {
+		return new Place(id, description, true);
+	}
+	
+	/**
+	 * Create a place with an id and description.
+	 * @param id - this is the id of the place (for creating {@link Exit} objects that go here).
+	 * @param description - this is what we show to the user.
+	 * @return the new Place object (add exits to it).
+	 */
+	public static Place create(String id, String description) {
+		return new Place(id, description, false);
+	}
+	
+	/**
+	 * Implements what we need to put Place in a HashSet or HashMap.
+	 */
+	public int hashCode() {
+		return this.id.hashCode();
+	}
+	
+	/**
+	 * Give a string for debugging what place is what.
+	 */
+	public String toString() {
+		return "Place("+this.id+" with "+this.exits.size()+" exits.)";
+	}
+	
+	/**
+	 * Whether this is the same place as another.
+	 */
+	public boolean equals(Object other) {
+		if (other instanceof Place) {
+			return this.id.equals(((Place) other).id);
+		}
+		return false;
+	}
+}

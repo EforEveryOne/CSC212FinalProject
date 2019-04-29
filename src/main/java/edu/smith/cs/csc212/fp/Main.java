@@ -1,7 +1,17 @@
 package edu.smith.cs.csc212.fp;
 
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+
+import edu.smith.cs.csc212.fp.Place;
+import edu.smith.cs.csc212.fp.Exit;
+
+//import edu.smith.cs.csc212.p4.Exit;
+//import edu.smith.cs.csc212.p4.Place;
+//import edu.smith.cs.csc212.p4.SecretExit;
 
 // For Testing
 public class Main {
@@ -44,10 +54,61 @@ public static void call_player_methods() {
 }
 
 
+private Map<String, Place> places = new HashMap<>();
+public String getStart() {
+	return "town";
+}
+
+//public GameZones() {}
+
+protected Place insert(Place p) {
+	places.put(p.getId(), p);
+	return p;
+}
+
+
+
 
 
 public static void main(String[] args) {
 	  play_game();
+//	  GameZones();
+	  GameZones game = new GameZones();
+	  String place = game.getStart();
+//	  System.out.println(game.getStart());
+		while (true) {
+			Place here = game.getPlace(place);
+//			System.out.println(here.getDescription());
+			
+			List<Exit> exits = here.getVisibleExits();
+			for (int i=0; i<exits.size(); i++) {
+			    Exit e = exits.get(i);
+				System.out.println(" ["+i+"] " + e.getDescription());
+			}
+			
+			if (here.getId() == "town") {
+				String input = "";
+				Scanner scanner = new Scanner(System.in);
+				input = scanner.next();
+				  
+				
+				int intValue = Integer.parseInt(input);
+				
+				  // Move to the room they indicated.
+				Exit destination = exits.get(intValue);
+				place = destination.getTarget();
+				
+				
+				System.out.println("YO ");
+				break;
+			}
+			
+		}
+	  
+
+		
+		
+		
 
 	  }
   }

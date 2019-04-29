@@ -1,5 +1,7 @@
 package edu.smith.cs.csc212.fp;
 
+import java.util.Objects;
+
 //JJ code
 public class Exit {
 	/**
@@ -21,5 +23,72 @@ public class Exit {
 		this.description = description;
 		this.target = target;
 	}
+
+	/**
+	 * This does not do anything because there is nothing to find in normal exits.
+	 * @return 
+	 */
+	public void search() {
+	}
+	
+	/**
+	 * Normal exits are never secret, so it returns false (they are not hidden).
+	 * Also we needed a return type so we can Override this in the SecretExit class.
+	 * @return
+	 */
+	public boolean isSecret() {
+		return false;
+	}
+	
+	/**
+	 * A getter for the description of this exit.
+	 * @return how it looks.
+	 */
+	public String getDescription() {
+		return this.description;
+	}
+	
+	/**
+	 * A getter for the target place of this exit.
+	 * @return where it goes.
+	 */
+	public String getTarget() {
+		return this.target;
+	}
+	
+	/**
+	 * Make this debuggable when we print it for ourselves.
+	 */
+	public String toString() {
+		return "Exit("+this.description+", "+this.target+")";
+	}
+	
+	/**
+	 * Make it so we can put this in a HashMap or HashSet.
+	 */
+	public int hashCode() {
+		return Objects.hash(this.description, this.target);
+	}
+	
+	/**
+	 * This is a useful definition of being the same.
+	 * @param other - another exit.
+	 * @return if they go to the same place.
+	 */
+	public boolean goesToSamePlace(Exit other) {
+		return this.target.equals(other.target);
+	}
+	
+	/**
+	 * The other half of hashCode that lets us put it in a HashMap or HashSet.
+	 */
+	public boolean equals(Object other) {
+		if (other instanceof Exit) {
+			Exit rhs = (Exit) other;
+			return this.target.equals(rhs.target) && this.description.equals(rhs.description); 
+		}
+		return false;
+	}
+
 
 }
