@@ -1,6 +1,7 @@
 package edu.smith.cs.csc212.fp;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Player {
@@ -72,7 +73,7 @@ public class Player {
 			int spendInput = 0;
 
 			while (!input.equals("endurance") || !input.equals("strength") || !input.equals("cancel")) {
-				System.out.println("Options: 'endurance' or 'strength' or 'cancel' ");
+				System.out.println("Options: [endurance] or [strength] or [cancel] ");
 				Scanner scanner = new Scanner(System.in);
 				input = scanner.next();
 				
@@ -189,7 +190,7 @@ public class Player {
 	
 	
 	
-	  public static void character_creation() {
+	  public static void character_creation(Player player) {
 		  System.out.println("___________________");
 		  System.out.println("|CHARACER CREATION|");
 		  System.out.println("Do you want to build your own chracter from scratch?");
@@ -204,7 +205,7 @@ public class Player {
 //			  Custom character.
 			  if (input.equals("yes")) {
 //				  Build blank character, modify by user input.
-				  Player player = new Player("TestName", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, inventory);
+//				  Player player = new Player("TestName", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, inventory);
 				  System.out.println("What's your name? ");
 				  String name = "";
 				  name = scanner.next();
@@ -253,31 +254,46 @@ public class Player {
 				  }
 //			  Default character.
 			  else if (input.equals("no")) {
-				  Player player = new Player(
-						  "DefaultDan", // name
-						  10, // age
-						  45, // hp
-						  10, // max_hp
-						  5, // skill points
-						  5, // endurance
-						  5, //strength
-						  0, // armor value
-						  1, // damage value, base 1.
-						  1, // level, base 1. 
-						  0, // xp
-						  100, // next lvl xp
-						  0, // money
-						  false, inventory); // priority for turn
+//				  Player player = new Player(
+//						  "DefaultDan", // name
+//						  10, // age
+//						  45, // hp
+//						  10, // max_hp
+//						  5, // skill points
+//						  5, // endurance
+//						  5, //strength
+//						  0, // armor value
+//						  1, // damage value, base 1.
+//						  1, // level, base 1. 
+//						  0, // xp
+//						  100, // next lvl xp
+//						  0, // money
+//						  false, inventory); // priority for turn
 
 				  System.out.println(player.print_details());
 				  break;
 				  }
 //			  Invalid input.
 			  else {
-				  System.out.println("Please type 'yes' or 'no'");
+				  System.out.println("Please type [yes] or [no]");
 				  }
 			  }
 		  }
+
+
+	public static void sleep_at_tavern(Player player) {
+		Random rand = new Random();
+		
+		int short_stay_cost = player.level * 2 + 1;
+		int long_stay_cost = player.level * 3 + 2;
+		System.out.println("'Welcome to the tavern!' It costs: " + short_stay_cost + " for a [short] stay and: " + long_stay_cost + " for a [long] stay.\n ");
+		
+
+		
+		
+//		if (player.currency)
+	
+	}
 	
 //	handle gold/items in player class or separate class?
 //	think it makes sense to do in here because I could do the same thing for enemies.

@@ -42,7 +42,7 @@ private Map<String, Place> places = new HashMap<>();
 		
 		Place shop = insert(
 				Place.create("shop", "This is the shop. "));
-		shop.addExit(new Exit("town", "Back to town. "));
+		shop.addExit(new Exit("town", "Back to Town. "));
 		
 		
 		
