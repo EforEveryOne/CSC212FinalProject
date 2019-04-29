@@ -86,23 +86,61 @@ public static void main(String[] args) {
 				System.out.println(" ["+i+"] " + e.getDescription());
 			}
 			
+//			TOWN ZONE/INPUT
 			if (here.getId() == "town") {
+				System.out.println("town time! ");
 				String input = "";
 				Scanner scanner = new Scanner(System.in);
 				input = scanner.next();
 				  
-				
 				int intValue = Integer.parseInt(input);
 				
 				  // Move to the room they indicated.
 				Exit destination = exits.get(intValue);
 				place = destination.getTarget();
+				}
+//			TAVERN ZONE/INPUT
+			else if (here.getId() == "tavern") {
+				System.out.println("tavern time! ");
+				String input = "";
+				Scanner scanner = new Scanner(System.in);
+				input = scanner.next();
+				  
+				int intValue = Integer.parseInt(input);
 				
+				  // Move to the room they indicated.
+				Exit destination = exits.get(intValue);
+				place = destination.getTarget();
+				}
+//			SHOP ZONE/INPUT
+			else if (here.getId() == "shop") {
+				System.out.println("shop time! ");
+				String input = "";
+				Scanner scanner = new Scanner(System.in);
+				input = scanner.next();
+				  
+				int intValue = Integer.parseInt(input);
 				
-				System.out.println("YO ");
-				break;
-			}
+				  // Move to the room they indicated.
+				Exit destination = exits.get(intValue);
+				place = destination.getTarget();
+				}
+//			WILDERNESS ZONE/INPUT
+			else if (here.getId() == "wilderness") {
+				System.out.println("wilderness time! ");
+				String input = "";
+				Scanner scanner = new Scanner(System.in);
+				input = scanner.next();
+				  
+				int intValue = Integer.parseInt(input);
+				
+				  // Move to the room they indicated.
+				Exit destination = exits.get(intValue);
+				place = destination.getTarget();
+				}
 			
+			
+//		end while loop	
 		}
 	  
 
