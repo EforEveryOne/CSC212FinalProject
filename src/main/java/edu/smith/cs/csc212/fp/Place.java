@@ -96,16 +96,6 @@ public class Place {
 		  }
 	
 	/**
-	 * This is a terminal location (good or bad) ends the game.
-	 * @param id - this is the id of the place (for creating {@link Exit} objects that go here).
-	 * @param description - this is the description of the place.
-	 * @return the Place object.
-	 */
-//	public static Place terminal(String id, String description, String options) {
-//		return new Place(id, description, options);
-//	}
-//	
-	/**
 	 * Create a place with an id and description.
 	 * @param id - this is the id of the place (for creating {@link Exit} objects that go here).
 	 * @param description - this is what we show to the user.
@@ -143,10 +133,4 @@ public class Place {
 	public String options() {
 		return this.options;
 	}
-//	public char[] options() {
-		
-		
-		// TODO Auto-generated method stub
-//		return null;
-//	}
 }

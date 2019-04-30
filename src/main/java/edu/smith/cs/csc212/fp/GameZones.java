@@ -21,31 +21,24 @@ private Map<String, Place> places = new HashMap<>();
 	
 	
 	public GameZones() {
-//		Place town = insert(
-//				Place.create("town", "You're in a town. People seem busy.\n " +
-//		"A nearby Shop and Tavern stand out to you. "));
-//		town.addExit(new Exit("tavern", "A long spiraling staircase extends upwards. "));
-		
-		
-		
 //		1st string = id, 2nd = description, 3rd = options
 		Place town = insert(
-				Place.create("town", "You're in a town. People seem busy.\n A nearby Shop and Tavern stand out to you. ",
-						"Options: "));
+				Place.create("town", "You're in a town. People seem busy. A nearby Shop and Tavern stand out to you. ",
+						"\nOptions: [0], [1], [2], [details]"));
 		town.addExit(new Exit("shop", "Go to Shop. "));
 		town.addExit(new Exit("tavern", "Go to Tavern. "));
-//		town.addExit(new Exit("Leave", "An old dusty road heading out of town... "));
+		town.addExit(new Exit("wilderness", "An old dusty road heading out of town... "));
 		
 		Place tavern = insert(
-				Place.create("tavern", "This is the tavern. ", "Options: "));
+				Place.create("tavern", "This is the tavern. ", "\nOptions: [0], [details], [sleep] "));
 		tavern.addExit(new Exit("town", "Back to town. "));
 		
 		Place shop = insert(
-				Place.create("shop", "This is the shop. ", "Options: "));
+				Place.create("shop", "This is the shop. ", "\nOptions: [0], [details], TODO:[buy] + [sell] "));
 		shop.addExit(new Exit("town", "Back to Town. "));
 		
 		Place wilderness = insert(
-				Place.create("wilderness", "This is outside of town, it's dangerous...", "Options: "));
+				Place.create("wilderness", "This is outside of town, it's dangerous...", "\nOptions: [0], [details], TODO:[explore] "));
 		wilderness.addExit(new Exit("town", "Back to Town. "));
 		
 		

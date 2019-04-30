@@ -5,24 +5,26 @@ import java.util.Random;
 public class Combat {
 
 //	Take in both a player and an enemy
-	public void combat(Player player, Enemy enemy) {
+	public static void combat(Player player, Enemy enemy) {
 		 Random rand = new Random();
 		 int priority_order = rand.nextInt(1);
 		 if (priority_order == 0) {
+			 System.out.println("priority_order result: " + priority_order + " Should be 0");
 			 player.priority = true;
+			 System.out.println("Player priority: " + player.priority + " Should be true");
 			 }
 		 else if (priority_order == 1) {
+			 System.out.println("priority_order result: " + priority_order + " Should be 1");
 			 player.priority = false;
+			 System.out.println("Player priority: " + player.priority + " Should be false");
 			 }
 		
-		
+	
 
 		Boolean combatants_engaged = true;
 		Boolean run = false;
 //		While player and enemy are alive and the player has not ran away.
 		while (combatants_engaged == true) {
-			
-			
 			
 //			3 cases, player wins and gets reward, leave combat.
 //			player dies, leave combat and game ends.
@@ -45,21 +47,13 @@ public class Combat {
 			else if (player.priority == false) {
 				System.out.println("enemy turn");
 				
-//				enemy attack
-				
-				
-				
+//				enemy attack	
 			}
-			
-			
-			
 //			player.hp > 0 && enemy.hp > 0
 			
 			
 			
 		}
-		
-		
 	}
 	
 }

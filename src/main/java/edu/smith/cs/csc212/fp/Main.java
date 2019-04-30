@@ -35,6 +35,8 @@ static Player player = new Player(
 100, // next lvl xp
 100, // currency
 false, inventory); // priority for turn
+
+static Enemy enemy = new Enemy(null, 0, 0, 0, 0, 0);
   
   public static void play_game(Player player) {
 	  System.out.println("Play game? ");
@@ -65,11 +67,7 @@ false, inventory); // priority for turn
 //should know current zone so that it knows where player is.
 public static void call_player_methods(Player player, GameZones gamezones) {
 //	if (gamezones.getPlace(id) == "town") {
-		
 	}
-	
-	
-	
 //	we will call this in zones to be able to process input w/o repeating code?
 //	with the graph/zone/nodes we can just node.exit/next sort of thing?
 //	can refer to node.name (place.description?) 
@@ -88,8 +86,8 @@ protected Place insert(Place p) {
 	}
 
 public static void place_details(Place here) {
-	System.out.println("You look around and notice: ");
-	System.out.println(here.getDescription());
+	System.out.println("\nYou look around and notice: ");
+	System.out.println(here.getDescription() + "\n ");
 	}
 
 
@@ -109,30 +107,29 @@ public static void main(String[] args) {
 		  List<Exit> exits = here.getVisibleExits();
 		  for (int i=0; i<exits.size(); i++) {
 			  Exit e = exits.get(i);
-			  System.out.println(" ["+i+"] " + e.getDescription());
+			  System.out.println(" [" + i + "] " + e.getDescription());
 			  }
 			
-//			Need to handle correct type input, we want a number, anything else crashes it, so handle it.
 //			TOWN ZONE/INPUT
-//			should be while instead of if?
 			if (here.getId() == "town") {
 				System.out.println(here.options());
 				String input = "";
 				Scanner scanner = new Scanner(System.in);
 				input = scanner.next();
-				if (input.equals("search")) {
+			
+//	Specific input
+				if (input.equals("details")) {
 					place_details(here);
+					continue;
 					}
 				
 //				final step is to leave the location. 
 				try {
 					int intValue = Integer.parseInt(input);
-					
-					// Move to the room they indicated.
 					Exit destination = exits.get(intValue);
 					place = destination.getTarget();
 				} catch (Exception e) {
-//					System.out.println("\n\nPlease type a valid option [0], [1], [search]\n ");
+//					System.out.println("\n\nPlease type a valid option [0], [1], [details]\n ");
 					System.out.println("Please type a valid input.\n ");
 					continue;
 					}
@@ -144,22 +141,26 @@ public static void main(String[] args) {
 				String input = "";
 				Scanner scanner = new Scanner(System.in);
 				input = scanner.next();
-				if (input.equals("search")) {
+				
+//	Specific input
+				if (input.equals("details")) {
 					place_details(here);
+					continue;
 					}
 				else if (input.equals("sleep")) {
 					Player.sleep_at_tavern(player);
+					continue;
 					}
+//				final step is to leave the location. 
 				try {
 					int intValue = Integer.parseInt(input);
-					
-					// Move to the room they indicated.
 					Exit destination = exits.get(intValue);
 					place = destination.getTarget();
-				} catch (Exception e) {
+					}
+				catch (Exception e) {
 //					TO DO
 //					SLEEP spend night at the tavern, heal up character. costs gold.
-//					System.out.println("\n\nPlease type a valid option: [0], [search], [sleep]\n ");
+//					System.out.println("\n\nPlease type a valid option: [0], [details], [sleep]\n ");
 					System.out.println("Please type a valid input.\n ");
 					continue;
 					}
@@ -171,13 +172,30 @@ public static void main(String[] args) {
 				String input = "";
 				Scanner scanner = new Scanner(System.in);
 				input = scanner.next();
+
+//	Specific input
+				if (input.equals("details")) {
+					place_details(here);
+					continue;
+					}
+				else if (input.equals("buy")) {
+//					TODO
+					System.out.println("TODO: BUY FROM SHOP");
+					continue;
+					}
+				else if (input.equals("sell")) {
+//					TODO
+					System.out.println("TODO: SELL TO SHOP");
+					continue;
+					}
+				
+//				final step is to leave the location. 
 				try {				
 					int intValue = Integer.parseInt(input);
-					
-					// Move to the room they indicated.
 					Exit destination = exits.get(intValue);
 					place = destination.getTarget();
-				} catch (Exception e) {
+					}
+				catch (Exception e) {
 					System.out.println("Please type a valid input.\n ");
 					continue;
 					}
@@ -185,24 +203,38 @@ public static void main(String[] args) {
 			
 //			WILDERNESS ZONE/INPUT
 			else if (here.getId() == "wilderness") {
+				System.out.println(here.options());
 				String input = "";
 				Scanner scanner = new Scanner(System.in);
 				input = scanner.next();
-				System.out.println(here.options());
+//	Specific input
+				if (input.equals("details")) {
+					place_details(here);
+					continue;
+					}
+				else if (input.equals("explore")) {
+//					TODO
+					System.out.println("TODO: COMBAT");
+					Combat.combat(player, enemy);
+					continue;
+					
+					
+				}
+				
+//				final step is to leave the location. 
 				try {				
 					int intValue = Integer.parseInt(input);
-					
-					// Move to the room they indicated.
 					Exit destination = exits.get(intValue);
 					place = destination.getTarget();
-				} catch (Exception e) {
+					}
+				catch (Exception e) {
 					System.out.println("Please type a valid input.\n ");
 					continue;
 					}
 				}
 			
 			
-//		end while loop	
+//		end while loop (the game)
 		}
 	  
 

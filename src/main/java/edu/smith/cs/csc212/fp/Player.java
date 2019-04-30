@@ -174,18 +174,18 @@ public class Player {
 		}
 	
 	public String print_details() {
-		return ("\nPlayer Info: \nName: " + name + "."
+		return ("\nPlayer Info: \nName: " + name + ". "
 				+ "\nAge: " + age + "."
-				+ "\nHitpoints: " + hp + "/" + max_hp + "."
-				+ "\nUnspent points: " + stat_points + "."
-				+ "\nEndurance: " + endurance + "."
-				+ "\nStength: " + strength + "."
-				+ "\nArmor: " + defense_value + "."
-				+ "\nDamage: " + damage_value + "."
-				+ "\nLevel: " + level + "."
-				+ "\nExperience: " + current_exp + "."
-				+ "\nNext Level: " + next_level_exp + "."
-				+ "\nPlaceholder for inventory/money: " + currency + ".");
+				+ "\nHitpoints: " + hp + "/" + max_hp + ". "
+				+ "\nUnspent points: " + stat_points + ". "
+				+ "\nEndurance: " + endurance + ". "
+				+ "\nStength: " + strength + ". "
+				+ "\nArmor: " + defense_value + ". "
+				+ "\nDamage: " + damage_value + ". "
+				+ "\nLevel: " + level + ". "
+				+ "\nExperience: " + current_exp + ". "
+				+ "\nNext Level: " + next_level_exp + ". "
+				+ "\nPlaceholder for inventory/money: " + currency + ".\n ");
 		}
 	
 	
@@ -193,7 +193,7 @@ public class Player {
 	  public static void character_creation(Player player) {
 		  System.out.println("___________________");
 		  System.out.println("|CHARACER CREATION|");
-		  System.out.println("Do you want to build your own chracter from scratch?");
+		  System.out.println("Do you want to build your own chracter from scratch? ");
 		  String input = "";
 		  
 		  while (!input.equals("yes")) {
@@ -287,7 +287,7 @@ public class Player {
 		
 		int short_stay_cost = player.level * 2 + 1;
 		int long_stay_cost = player.level * 3 + 2;
-		System.out.println("'Welcome to the tavern!' It costs: " + short_stay_cost + " for a short stay and: " + long_stay_cost + " for a long stay.\n ");
+		System.out.println("\n'Welcome to the tavern!' It costs: " + short_stay_cost + " for a short stay and: " + long_stay_cost + " for a long stay.\n ");
 		System.out.println("You currently have: " + player.currency + " gold.\n ");
 		System.out.println("Options: [short], [long], [back] ");
 		String input = "";
@@ -301,6 +301,7 @@ public class Player {
 					System.out.println("You don't have enough gold! ");
 					System.out.println("You need: " + short_stay_cost + "gold. ");
 					System.out.println("You only have: " + player.currency + "gold. ");
+//					break;
 					}
 //				LOW HEAL
 				else if (player.currency >= short_stay_cost) {
@@ -320,6 +321,7 @@ public class Player {
 					System.out.println("You don't have enough gold! ");
 					System.out.println("You need: " + long_stay_cost + "gold. ");
 					System.out.println("You only have: " + player.currency + "gold. ");
+//					break;
 					}
 //				FULL HEAL
 				else if (player.currency >= long_stay_cost) {
