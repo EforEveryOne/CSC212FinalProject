@@ -86,12 +86,8 @@ public class Place {
 	public List<Exit> getVisibleExits() {
 		  List<Exit> output = new ArrayList<>();
 		  for (Exit e : this.exits) {
-		    if (e.isSecret()) {
-		     // don't show to player
-		    } else {
 		      output.add(e);
 		      }
-		    }
 		  return output;
 		  }
 	

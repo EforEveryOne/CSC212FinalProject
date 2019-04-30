@@ -9,6 +9,9 @@ import java.util.Scanner;
 
 import edu.smith.cs.csc212.fp.Place;
 import edu.smith.cs.csc212.fp.Exit;
+//import edu.smith.cs.csc212.fp.Combat;
+import edu.smith.cs.csc212.fp.Enemy;
+//import edu.smith.cs.csc212.fp.Player;
 
 // For Testing
 public class Main {
@@ -21,22 +24,30 @@ public class Main {
 private static ArrayList<Item> inventory;
  
 static Player player = new Player(
-"DefaultDan", // name
-10, // age
-45, // hp
-10, // max_hp
-5, // skill points
-5, // endurance
-5, //strength
-0, // armor value
-1, // damage value, base 1.
-1, // level, base 1. 
-0, // xp
-100, // next lvl xp
-100, // currency
-false, inventory); // priority for turn
+		
+		"DefaultDan", // name
+		10, // age
+		45, // hp
+		10, // max_hp
+		5, // skill points
+		5, // endurance
+		5, //strength
+		0, // armor value
+		1, // damage value, base 1.
+		1, // level, base 1. 
+		0, // xp
+		100, // next lvl xp
+		100, // currency
+		false, inventory); // priority for turn
 
-static Enemy enemy = new Enemy(null, 0, 0, 0, 0, 0);
+static Enemy enemy = new Enemy(
+		null,
+		0,
+		0,
+		0,
+		0,
+		0, 
+		0);
   
   public static void play_game(Player player) {
 	  System.out.println("Play game? ");
@@ -234,6 +245,9 @@ public static void main(String[] args) {
 				else if (input.equals("explore")) {
 //					TODO
 					System.out.println("TODO: COMBAT");
+					
+					Enemy.roll_random_enemy(enemy);
+					
 					Combat.combat(player, enemy);
 					continue;
 					

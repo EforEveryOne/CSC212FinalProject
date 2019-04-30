@@ -25,22 +25,6 @@ public class Exit {
 	}
 
 	/**
-	 * This does not do anything because there is nothing to find in normal exits.
-	 * @return 
-	 */
-	public void search() {
-	}
-	
-	/**
-	 * Normal exits are never secret, so it returns false (they are not hidden).
-	 * Also we needed a return type so we can Override this in the SecretExit class.
-	 * @return
-	 */
-	public boolean isSecret() {
-		return false;
-	}
-	
-	/**
 	 * A getter for the description of this exit.
 	 * @return how it looks.
 	 */

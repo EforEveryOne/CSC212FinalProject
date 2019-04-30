@@ -1,6 +1,7 @@
 package edu.smith.cs.csc212.fp;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Combat {
 
@@ -36,16 +37,47 @@ public class Combat {
 //			Player turn.
 			if (player.priority == true) {
 				System.out.println("player turn");
+				String input = "";
+				
+				  while (!input.equals("attack") || !input.equals("inventory") || !input.equals("player") || !input.equals("run")) {
+					  Scanner scanner = new Scanner(System.in);
+					  input = scanner.next();
+//					  Move to character creation.
+					  if (input.equals("attack")) {
+						  continue;
+						  
+					  }
+					  else if (input.equals("inventory")) {
+						  continue;
+						  
+					  }
+					  else if (input.equals("player")) {
+						  continue;
+						  
+					  }
+					  else if (input.equals("run")) {
+						  continue;
+						  
+					  }
+					  else {
+						  continue;
+					  }
+					  }
+				
+				
 				
 //				player input actions
 				
 //				last step, set priority to false
 				player.priority = false;
+				continue;
 			}
 			
 //			Enemy turn.
 			else if (player.priority == false) {
 				System.out.println("enemy turn");
+				player.priority = true;
+				continue;
 				
 //				enemy attack	
 			}
