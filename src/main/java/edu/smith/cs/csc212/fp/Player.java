@@ -58,7 +58,28 @@ public class Player {
 		Player.inventory = inventory;
 		}
 	
-	
+	public void offer_spend_points(Player player) {
+		String input = "";
+		while (!input.equals("yes") || !input.equals("no")) {
+			System.out.println("Do you want to spend attribute points?\n [yes] or [no] ");
+			Scanner scanner = new Scanner(System.in);
+			input = scanner.next();
+			
+			if (input.equals("yes")) {
+				spend_points(player);
+				break;
+			}
+			else if (input.equals("no")) {
+				break;
+			}
+			else {
+				System.out.println("Please type a valid input.\n ");
+				continue;
+			}
+			
+			
+		}	
+	}
 //	These points can be spent to increase strength or endurance.
 	public void spend_points(Player player) {
 		System.out.println("______________________");
@@ -173,7 +194,7 @@ public class Player {
 			}
 		}
 	
-	public String print_details() {
+	public String print_details(Player player) {
 		return ("\nPlayer Info: \nName: " + name + ". "
 				+ "\nAge: " + age + "."
 				+ "\nHitpoints: " + hp + "/" + max_hp + ". "
@@ -271,7 +292,7 @@ public class Player {
 //						  0, // money
 //						  false, inventory); // priority for turn
 
-				  System.out.println(player.print_details());
+				  System.out.println(player.print_details(player));
 				  break;
 				  }
 //			  Invalid input.

@@ -102,7 +102,7 @@ public static void main(String[] args) {
 
 		  
 		  System.out.println("______________________");
-		  System.out.println("| you are in: " + here.getId() + "|");
+		  System.out.println("| you are in: " + here.getId() + " |");
 		  
 		  List<Exit> exits = here.getVisibleExits();
 		  for (int i=0; i<exits.size(); i++) {
@@ -118,11 +118,15 @@ public static void main(String[] args) {
 				input = scanner.next();
 			
 //	Specific input
-				if (input.equals("details")) {
+				if (input.equals("search")) {
 					place_details(here);
 					continue;
 					}
-				
+				else if (input.equals("player")) {
+					System.out.println(player.print_details(player));
+					player.offer_spend_points(player);
+					continue;
+					}
 //				final step is to leave the location. 
 				try {
 					int intValue = Integer.parseInt(input);
@@ -143,8 +147,13 @@ public static void main(String[] args) {
 				input = scanner.next();
 				
 //	Specific input
-				if (input.equals("details")) {
+				if (input.equals("search")) {
 					place_details(here);
+					continue;
+					}
+				else if (input.equals("player")) {
+					System.out.println(player.print_details(player));
+					player.offer_spend_points(player);
 					continue;
 					}
 				else if (input.equals("sleep")) {
@@ -174,8 +183,13 @@ public static void main(String[] args) {
 				input = scanner.next();
 
 //	Specific input
-				if (input.equals("details")) {
+				if (input.equals("search")) {
 					place_details(here);
+					continue;
+					}
+				else if (input.equals("player")) {
+					System.out.println(player.print_details(player));
+					player.offer_spend_points(player);
 					continue;
 					}
 				else if (input.equals("buy")) {
@@ -208,8 +222,13 @@ public static void main(String[] args) {
 				Scanner scanner = new Scanner(System.in);
 				input = scanner.next();
 //	Specific input
-				if (input.equals("details")) {
+				if (input.equals("search")) {
 					place_details(here);
+					continue;
+					}
+				else if (input.equals("player")) {
+					System.out.println(player.print_details(player));
+					player.offer_spend_points(player);
 					continue;
 					}
 				else if (input.equals("explore")) {
