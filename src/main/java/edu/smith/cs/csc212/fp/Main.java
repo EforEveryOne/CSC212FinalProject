@@ -108,6 +108,8 @@ public static void main(String[] args) {
 	  play_game(player);
 	  GameZones game = new GameZones();
 	  String place = game.getStart();
+	  
+//	  set this to a variable, player alive?
 	  while (true) {
 		  Place here = game.getPlace(place);
 

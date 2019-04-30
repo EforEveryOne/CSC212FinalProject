@@ -44,6 +44,9 @@ public class Combat {
 					  input = scanner.next();
 //					  Move to character creation.
 					  if (input.equals("attack")) {
+//						  use player dmg, remove enemy hp.
+//						  pass turn.
+						  
 						  continue;
 						  
 					  }
@@ -52,11 +55,15 @@ public class Combat {
 						  
 					  }
 					  else if (input.equals("player")) {
+						  System.out.println(player.print_details(player));
+//						  player_inventory();
 						  continue;
 						  
 					  }
 					  else if (input.equals("run")) {
-						  continue;
+						  
+						  run = true;
+						  break;
 						  
 					  }
 					  else {
@@ -76,6 +83,9 @@ public class Combat {
 //			Enemy turn.
 			else if (player.priority == false) {
 				System.out.println("enemy turn");
+//				Enemy hits the player for dmg.
+//				remove player hp.
+//				end turn
 				player.priority = true;
 				continue;
 				
@@ -84,7 +94,15 @@ public class Combat {
 //			player.hp > 0 && enemy.hp > 0
 			
 			
+			if (combatants_engaged == false && run == false && player.hp > 0) {
+//				reward happens!
+				
 			
+			}
+			else if (combatants_engaged == false && run == false && player.hp < 0) {
+//				END THE GAME.
+				
+			}
 		}
 	}
 	
