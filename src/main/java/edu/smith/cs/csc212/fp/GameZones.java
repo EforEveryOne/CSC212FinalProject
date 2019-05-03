@@ -34,11 +34,11 @@ private Map<String, Place> places = new HashMap<>();
 		tavern.addExit(new Exit("town", "Back to town. "));
 		
 		Place shop = insert(
-				Place.create("shop", "This is the shop. ", "\nOptions: [0], [search], [player] TODO:[buy] + [sell] "));
+				Place.create("shop", "This is the shop. ", "\nOptions: [0], [search], [player], TODO:[buy] + [sell] "));
 		shop.addExit(new Exit("town", "Back to Town. "));
 		
 		Place wilderness = insert(
-				Place.create("wilderness", "This is outside of town, it's dangerous...", "\nOptions: [0], [search], [player] TODO:[explore] "));
+				Place.create("wilderness", "This is outside of town, it's dangerous...", "\nOptions: [0], [search], [player], [explore] "));
 		wilderness.addExit(new Exit("town", "Back to Town. "));
 		
 		

@@ -23,6 +23,7 @@ public class Player {
 	int next_level_exp;
 	int currency;
 	boolean priority;
+	int kill_count;
 	static ArrayList<Item> inventory;
 
 	
@@ -40,6 +41,7 @@ public class Player {
 			int next_level_exp,
 			int currency,
 			boolean priority,
+			int kill_count,
 			ArrayList<Item> inventory) {
 		this.name = name;
 		this.age = age;
@@ -55,6 +57,7 @@ public class Player {
 		this.next_level_exp = next_level_exp;
 		this.currency = currency;
 		this.priority = priority;
+		this.kill_count = kill_count;
 		Player.inventory = inventory;
 		}
 	
@@ -176,15 +179,21 @@ public class Player {
 	
 	public void level_up_check(Player player) {
 		if (player.current_exp >= player.next_level_exp) {
+			System.out.println(player.name + " has leveled up! ");
+
 			
 //			Crossover xp is the remainder of what is left after using enough to level up once.
 			int crossover_xp = player.current_exp - player.next_level_exp;
 //			Level increase.
 			player.level += 1;
+			System.out.println(player.name + " is now level: " + player.level + "! ");
 //			Stat points to be spent
 			player.stat_points += 2;
-			
+			System.out.println(player.name + " earned 2 more stat points and now has: " + player.stat_points + " unspent points! ");
 			calculate_stats(player);
+
+			System.out.println(player.name + " has: " + player.current_exp + " experience. ");
+			System.out.println(player.name + " next level at: " + player.next_level_exp + " experience. ");
 			
 //			player.current_exp += player.next_level_exp;
 			player.next_level_exp += (int) Math.pow(player.current_exp, 1.1);
@@ -214,7 +223,7 @@ public class Player {
 	  public static void character_creation(Player player) {
 		  System.out.println("___________________");
 		  System.out.println("|CHARACER CREATION|");
-		  System.out.println("Do you want to build your own chracter from scratch? ");
+		  System.out.println("Do you want to build your own character? ");
 		  String input = "";
 		  
 		  while (!input.equals("yes")) {
@@ -262,36 +271,21 @@ public class Player {
 						  System.out.println("\nYour age is: " + player.age + ". ");
 						  
 			//			  Set base stats and free points.
-						  player.endurance += 5;
-						  player.strength += 5;
-						  player.stat_points += 5;
-						  player.next_level_exp = 100;
+//						  player.endurance += 5;
+//						  player.strength += 5;
+//						  player.stat_points += 5;
+//						  player.next_level_exp = 100;
 			//			  spend skill points now.
 						  player.spend_points(player);
 			//			  calc stat output based on inputs.
 						  player.calculate_stats(player);
+						  System.out.println(player.print_details(player));
 						  }
 					  }
 				  }
 //			  Default character.
 			  else if (input.equals("no")) {
 				  System.out.println("Using the default player object made in Main.\n ");
-//				  Player player = new Player(
-//						  "DefaultDan", // name
-//						  10, // age
-//						  45, // hp
-//						  10, // max_hp
-//						  5, // skill points
-//						  5, // endurance
-//						  5, //strength
-//						  0, // armor value
-//						  1, // damage value, base 1.
-//						  1, // level, base 1. 
-//						  0, // xp
-//						  100, // next lvl xp
-//						  0, // money
-//						  false, inventory); // priority for turn
-
 				  System.out.println(player.print_details(player));
 				  break;
 				  }

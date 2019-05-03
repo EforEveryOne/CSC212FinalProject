@@ -30,51 +30,56 @@ public class Enemy {
 		this.exp_reward = exp_reward;
 		}
 	
-	
-	 static Random rand = new Random();
+	static Random rand = new Random();
 	
 	
 	public static void roll_random_enemy(Enemy enemy){
-		make_human(enemy);
-		System.out.println(enemy.name + enemy.hp + enemy.defense_value);
+		Random rand = new Random();
+		int enemy_roll = rand.nextInt(100);
 		
 		
-//		weighted random roll to make a "type" of enemy
-//		call make that specific type method (which will have varied values within reason.)
-		
-		
-	}
+		if (enemy_roll >= 90) {
+			make_bear(enemy);
+			System.out.println("\nYou encountered a " + (enemy.name) + "! They don't look friendly! ");
+			}
+		else if (enemy_roll >= 60) {
+			make_wolf(enemy);
+			System.out.println("\nYou encountered a " + (enemy.name) + "! They don't look friendly! ");
+			}
+		else if (enemy_roll <= 59) {
+			make_human(enemy);
+			System.out.println("\nYou encountered a " + (enemy.name) + "! They don't look friendly! ");
+			}
+//		System.out.println(enemy.hp + " " + Enemy.defense_value);
+		}
 	
 	public static void make_human(Enemy enemy) {
 		enemy.name = "Human";
-		Enemy.max_hp = rand.nextInt(10 + 5);
+		Enemy.max_hp = rand.nextInt(10) + 7;
 		enemy.hp = max_hp;
-		Enemy.defense_value = rand.nextInt(1);
-		Enemy.damage_value =  rand.nextInt(2 + 1);
-		enemy.currency_reward =  rand.nextInt(10 + 2);
+		Enemy.defense_value = rand.nextInt(2);
+		Enemy.damage_value = rand.nextInt(2) + 1;
+		enemy.currency_reward =  rand.nextInt(10) + 2;
 		enemy.exp_reward = (Enemy.max_hp + Enemy.defense_value + Enemy.damage_value) * 2;
 		}
 	
-	public void make_wolf(Enemy enemy) {
+	public static void make_wolf(Enemy enemy) {
 		enemy.name = "Wolf";
-//		enemy.hp =
-//		enemy.max_hp =
-//		enemy.defense_value =
-//		enemy.damage_value =
-//		enemy.currency_reward = 
-//		enemy.exp_reward = 
-		
-	}
+		Enemy.max_hp = rand.nextInt(8) + 2;
+		enemy.hp = max_hp;
+		Enemy.defense_value = rand.nextInt(1);
+		Enemy.damage_value = rand.nextInt(4) + 2;
+		enemy.currency_reward =  rand.nextInt(3);
+		enemy.exp_reward = (Enemy.max_hp + Enemy.defense_value + Enemy.damage_value) * 2;
+		}
 	
-	public void make_bear(Enemy enemy) {
+	public static void make_bear(Enemy enemy) {
 		enemy.name = "Bear";
-//		enemy.hp =
-//		enemy.max_hp =
-//		enemy.defense_value =
-//		enemy.damage_value =
-//		enemy.currency_reward = 
-//		enemy.exp_reward = 
-		
+		Enemy.max_hp = rand.nextInt(60) + 40;
+		enemy.hp = max_hp;
+		Enemy.defense_value = rand.nextInt(10) + 5;
+		Enemy.damage_value = rand.nextInt(20) + 10;
+		enemy.currency_reward =  rand.nextInt(1000);
+		enemy.exp_reward = (Enemy.max_hp + Enemy.defense_value + Enemy.damage_value) * 2;
+		}
 	}
-
-}

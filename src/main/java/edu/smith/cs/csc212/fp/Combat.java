@@ -7,21 +7,18 @@ public class Combat {
 
 //	Take in both a player and an enemy
 	public static void combat(Player player, Enemy enemy) {
-		 Random rand = new Random();
-		 int priority_order = rand.nextInt(1);
-		 if (priority_order == 0) {
-			 System.out.println("priority_order result: " + priority_order + " Should be 0");
-			 player.priority = true;
-			 System.out.println("Player priority: " + player.priority + " Should be true");
-			 }
-		 else if (priority_order == 1) {
-			 System.out.println("priority_order result: " + priority_order + " Should be 1");
-			 player.priority = false;
-			 System.out.println("Player priority: " + player.priority + " Should be false");
-			 }
+		Random rand = new Random();
+		int priority_order = rand.nextInt(2);
+//		System.out.println("Priority order roll: " + priority_order);
+		if (priority_order == 0) {
+			player.priority = true;
+			System.out.println(player.name + " is able to act before the " + enemy.name + ". ");
+			}
+		else if (priority_order == 1) {
+			player.priority = false;
+			System.out.println("The " + enemy.name + " is able to act before " + player.name + ". ");
+			}
 		
-	
-
 		Boolean combatants_engaged = true;
 		Boolean run = false;
 //		While player and enemy are alive and the player has not ran away.
@@ -32,78 +29,80 @@ public class Combat {
 //			player runs, leave combat, no loot.
 			if (player.hp <= 0 || enemy.hp <= 0 || run == true) {
 				combatants_engaged = false;
-			}
+				}
 
 //			Player turn.
-			if (player.priority == true) {
-				System.out.println("player turn");
+			while (player.priority == true && player.hp > 0 && enemy.hp > 0) {
+				System.out.println("player turn: ");
 				String input = "";
 				
-				  while (!input.equals("attack") || !input.equals("inventory") || !input.equals("player") || !input.equals("run")) {
+				  if (!input.equals("attack") || !input.equals("inventory") || !input.equals("player") || !input.equals("run")) {
 					  Scanner scanner = new Scanner(System.in);
 					  input = scanner.next();
-//					  Move to character creation.
+
+//					Specific input
 					  if (input.equals("attack")) {
-//						  use player dmg, remove enemy hp.
-//						  pass turn.
-						  
+						  System.out.println(player.name + " attacks for: " + player.damage_value);
+						  enemy.hp -= (player.damage_value - Enemy.defense_value);
+						  System.out.println("Enemy hp: " + enemy.hp + "/" + Enemy.max_hp + " Enemy defense: " + Enemy.defense_value + " Enemy damage: " + Enemy.damage_value );
+						  player.priority = false;
+//						  System.out.println("player.priority: Should be FALSE:" +  player.priority);
 						  continue;
-						  
-					  }
+						  }
 					  else if (input.equals("inventory")) {
+						  System.out.println("TODO: inventory. ");
+//						  Will be used for un/equipping items, or consumables.
 						  continue;
-						  
-					  }
+						  }
 					  else if (input.equals("player")) {
 						  System.out.println(player.print_details(player));
-//						  player_inventory();
 						  continue;
-						  
-					  }
+						  }
 					  else if (input.equals("run")) {
-						  
+//						  This is one of the cases handled.
+						  System.out.println("You run away! ");
 						  run = true;
+						  combatants_engaged = false;
+						  player.priority = false;
 						  break;
-						  
-					  }
+						  }
 					  else {
+						  System.out.println("\nOptions: [attack], [player], [run], TODO:[inventory] ");
 						  continue;
+						  }
 					  }
-					  }
-				
-				
-				
-//				player input actions
-				
 //				last step, set priority to false
 				player.priority = false;
 				continue;
-			}
+				}
 			
 //			Enemy turn.
-			else if (player.priority == false) {
-				System.out.println("enemy turn");
-//				Enemy hits the player for dmg.
-//				remove player hp.
-//				end turn
+			if (player.priority == false && run == false && enemy.hp > 0) {
+				System.out.println("\nEnemy turn: ");
+				System.out.println("The " + enemy.name + " attacked you for " + Enemy.damage_value + "! ");
+				player.hp -= Enemy.damage_value - player.defense_value;
+				System.out.println(player.name + " HP: " + player.hp + "/" + player.max_hp + ".\n ");
 				player.priority = true;
 				continue;
-				
-//				enemy attack	
+				}
 			}
-//			player.hp > 0 && enemy.hp > 0
+//		Once combatants are no longer engaged, we check the result for each case.
+		if (combatants_engaged == false && run == false && player.hp > 0) {
+//			reward happens!
+			System.out.println("\n\n\n" + player.name +" defeated the " + enemy.name + "! ");
+			player.kill_count += 1;
+			player.current_exp += enemy.exp_reward;
+			player.currency += enemy.currency_reward;
+			System.out.println(player.name + " found: " + enemy.currency_reward + " gold. ");
+			System.out.println(player.name + " gained: " + enemy.exp_reward + " experience. ");
 			
 			
-			if (combatants_engaged == false && run == false && player.hp > 0) {
-//				reward happens!
-				
-			
+//			Finally check if the player leveled.
+			player.level_up_check(player);
 			}
-			else if (combatants_engaged == false && run == false && player.hp < 0) {
-//				END THE GAME.
-				
+		else if (combatants_engaged == false && run == false && player.hp <= 0) {
+			System.out.println("You're dead! :( ");
+//			END THE GAME.
 			}
 		}
 	}
-	
-}

@@ -31,14 +31,16 @@ static Player player = new Player(
 		10, // max_hp
 		5, // skill points
 		5, // endurance
-		5, //strength
+		5, // strength
 		0, // armor value
 		1, // damage value, base 1.
 		1, // level, base 1. 
 		0, // xp
 		100, // next lvl xp
-		100, // currency
-		false, inventory); // priority for turn
+		20, // currency
+		false,
+		0, // kill_count
+		inventory); // priority for turn
 
 static Enemy enemy = new Enemy(
 		null,
@@ -109,12 +111,12 @@ public static void main(String[] args) {
 	  GameZones game = new GameZones();
 	  String place = game.getStart();
 	  
-//	  set this to a variable, player alive?
-	  while (true) {
+//	  As long as the player lives...
+	  while (player.hp > 0) {
 		  Place here = game.getPlace(place);
 
 		  
-		  System.out.println("______________________");
+		  System.out.println("\n______________________");
 		  System.out.println("| you are in: " + here.getId() + " |");
 		  
 		  List<Exit> exits = here.getVisibleExits();
@@ -245,38 +247,27 @@ public static void main(String[] args) {
 					continue;
 					}
 				else if (input.equals("explore")) {
-//					TODO
-					System.out.println("TODO: COMBAT");
-					
+//					Build the enemy.
 					Enemy.roll_random_enemy(enemy);
 					
+//					Put the enemy and the player into the encounter.
 					Combat.combat(player, enemy);
 					continue;
-					
-					
-				}
+					}
 				
-//				final step is to leave the location. 
+//				final step is to leave the "location".
 				try {				
 					int intValue = Integer.parseInt(input);
 					Exit destination = exits.get(intValue);
 					place = destination.getTarget();
 					}
 				catch (Exception e) {
-					System.out.println("Please type a valid input.\n ");
+					System.out.println("Please type a valid input. ");
 					continue;
 					}
 				}
-			
-			
-//		end while loop (the game)
-		}
-	  
-
-		
-		
-		
-
+			}
+	  System.out.println("GAME OVER. ");
+	  System.out.println("You defeated: " + player.kill_count + " total enemies! ");
 	  }
-  }
-
+}
