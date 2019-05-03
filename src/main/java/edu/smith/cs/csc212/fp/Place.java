@@ -1,13 +1,16 @@
+// Code written by JJ
+// SOURCE:
+// https://github.com/jjfiv/CSC212P4
+// minor changes by me, include the "options" field.
+
+
 package edu.smith.cs.csc212.fp;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import edu.smith.cs.csc212.fp.Exit;
-//import edu.smith.cs.csc212.p4.Place;
-//import edu.smith.cs.csc212.p4.SecretExit;
 
-//JJ code
 public class Place {
 	/**
 	 * This is a list of places we can get to from this place.
@@ -39,7 +42,6 @@ public class Place {
 		this.id = id;
 		this.description = description;
 		this.exits = new ArrayList<>();
-//		this.terminal = terminal;
 //		Adding in input options for places.
 		this.options = options;
 	}

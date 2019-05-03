@@ -1,3 +1,7 @@
+// Code written by JJ
+// SOURCE:
+// https://github.com/jjfiv/CSC212P4
+
 package edu.smith.cs.csc212.fp;
 
 import java.util.Objects;
