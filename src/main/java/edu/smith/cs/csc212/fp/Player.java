@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 public class Player {
 	
+	
+	
 //	personal stuff
 	String name;
 	int age;
@@ -26,7 +28,24 @@ public class Player {
 	int kill_count;
 	static ArrayList<Item> inventory;
 
-	
+	/**
+	 * @param hp - current hitpoint value. If it goes to 0 or lower the player is dead!
+	 * @param name - player name.
+	 * @param age - flavor text.
+	 * @param max_hp - max value for hitpoints.
+	 * @param stat_points - points that can be spent to increase strength or endurance.
+	 * @param endurance - a player stat used to increase player hitpoints.
+	 * @param strength - a player stat used to increase player damage.
+	 * @param defense_value - combined total of player armor.
+	 * @param damage_value - combined total of player damage.
+	 * @param level - player current level.
+	 * @param current_exp - player current experience value.
+	 * @param next_level_exp - the target value they need their current_exp to reach in order to level up.
+	 * @param currency - how much money the player has.
+	 * @param priority - determines if it's the player or enemy turn.
+	 * @param kill_count - shows how many enemies the player has defeated at the end of the game (when they die).
+	 * @param inventory - player inventory.
+	 */
 	public Player(String name,
 			int hp,
 			int age,
@@ -78,11 +97,9 @@ public class Player {
 			else {
 				System.out.println("Please type a valid input.\n ");
 				continue;
-			}
-			
-			
-		}	
-	}
+				}
+			}	
+		}
 //	These points can be spent to increase strength or endurance.
 	public void spend_points(Player player) {
 		System.out.println("______________________");
@@ -166,8 +183,7 @@ public class Player {
 			System.out.println("You don't have enough points available to spend.\n ");
 			}
 		}
-	
-//	don't think this is needed... can just call level_up even for initial creation?
+
 	public void calculate_stats(Player player) {	
 		player.max_hp = player.endurance * 2 + player.level;
 //		heal them up to new full hp.
@@ -218,8 +234,6 @@ public class Player {
 				+ "\nPlaceholder for inventory/money: " + currency + ".\n ");
 		}
 	
-	
-	
 	  public static void character_creation(Player player) {
 		  System.out.println("___________________");
 		  System.out.println("|CHARACER CREATION|");
@@ -229,13 +243,9 @@ public class Player {
 		  while (!input.equals("yes")) {
 			  Scanner scanner = new Scanner(System.in);
 			  input = scanner.next();
-//			  System.out.println("This is the current input: " + input);
-//			  System.out.println(player.print_details());
 			  
 //			  Custom character.
 			  if (input.equals("yes")) {
-//				  Build blank character, modify by user input.
-//				  Player player = new Player("TestName", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, inventory);
 				  System.out.println("What's your name? ");
 				  String name = "";
 				  name = scanner.next();
@@ -244,10 +254,6 @@ public class Player {
 				  
 				  int age = 0;
 				  System.out.println("\nWhat's your age? ");
-//				  While age is not between 10 and 90.
-				  
-//				  Scanner scan = new Scanner(System.in);
-
 				  while (age < 10 || age > 90) {
 //					  When we don't have an int, we're going to stay here until we do.
 					  while(!scanner.hasNextInt()) {
@@ -269,13 +275,6 @@ public class Player {
 					  else if (age >= 10 && age <= 90) {
 						  player.age = age;
 						  System.out.println("\nYour age is: " + player.age + ". ");
-						  
-			//			  Set base stats and free points.
-//						  player.endurance += 5;
-//						  player.strength += 5;
-//						  player.stat_points += 5;
-//						  player.next_level_exp = 100;
-			//			  spend skill points now.
 						  player.spend_points(player);
 			//			  calc stat output based on inputs.
 						  player.calculate_stats(player);
@@ -316,7 +315,6 @@ public class Player {
 					System.out.println("You don't have enough gold! ");
 					System.out.println("You need: " + short_stay_cost + "gold. ");
 					System.out.println("You only have: " + player.currency + "gold. ");
-//					break;
 					}
 //				LOW HEAL
 				else if (player.currency >= short_stay_cost) {
@@ -336,7 +334,6 @@ public class Player {
 					System.out.println("You don't have enough gold! ");
 					System.out.println("You need: " + long_stay_cost + "gold. ");
 					System.out.println("You only have: " + player.currency + "gold. ");
-//					break;
 					}
 //				FULL HEAL
 				else if (player.currency >= long_stay_cost) {
@@ -354,15 +351,4 @@ public class Player {
 				}
 			}
 		}
-	
-//	handle gold/items in player class or separate class?
-//	think it makes sense to do in here because I could do the same thing for enemies.
-//	if inventory is it's own class, does that mean it's "universal"?
-//	would make it difficult to handle multiple inventories?
-	
-//	or just have a player inventory which extends/supers inventory?
-	
-	
-	
-
-}
+	}
